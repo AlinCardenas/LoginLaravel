@@ -3,8 +3,10 @@
 @section('title','index')
 
 @section('content')
+  
     
-    <form class="max-w-md mx-auto" method="POST" action="" gap-4 >
+    <form class="max-w-md mx-auto mt-9" method="POST" action=""  >
+        <h1 class="font-bold" >Login</h1>
         @csrf
     
         <div class="mb-4">
@@ -21,7 +23,5 @@
         <button type="submit" class="w-full px-4 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded-md">Enviar</button>
         </div>
     </form>
-    
-@endsection
     
 @endsection
