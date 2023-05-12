@@ -17,8 +17,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    static $rules = [
+        'name' => 'required',
+        'last_name' => 'required',
+        'second_name' => 'required',
+        'password' => 'required',
+        'email' => 'required'
+    ];
+
     protected $fillable = [
         'name',
+        'last_nameA',
+        'last_nameB',
         'email',
         'password',
     ];
@@ -28,6 +38,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $hidden = [
         'password',
         'remember_token',

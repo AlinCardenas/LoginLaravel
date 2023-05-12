@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('users.register');
+
+
+Route::prefix('users')->group(function()
+{
+    Route::controller(AuthController::class)->group(function(){
+
+        Route::get('users/login','login')->name('login');
+        Route::get('register','register')->name('register');
+
+        Route::post('login-verify', 'loginVerify')->name('login.verify');
+        Route::post('register-verify', 'registerVerify')->name('register.verify');
+        
+        Route::post('logout', 'logout')->name('logout');
+    });
+    
 });
 
-Route::view('/login', 'users.login');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+});
